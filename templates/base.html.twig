@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.min.css">
+    <title>test</title>
+</head>
+<body>
+
+<center><H1>Liste de l'ensemble des passagers</H1></center>
+<center>
+    <table border="black">
+        <tr>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Email</th>
+            <th>Telephone</th>
+        </tr>
+        {% for i in data %}
+            <tr>
+                <td>{{ i.id }}</td>
+                <td>{{ i.nom }}</td>
+                <td>{{ i.prenom }}</td>
+                <td>{{ i.email }} </td>
+                <td>{{ i.telephone }}</td>
+            </tr>
+        {% endfor %}
+
+
+<br>
+
+    <tr>
+
+    </tr>
+
+
+</table>
+
+</center>
+
+</body>
+</html>

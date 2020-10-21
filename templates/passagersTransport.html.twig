@@ -1,0 +1,58 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.min.css">
+    <title>test</title>
+</head>
+<body>
+
+<center>
+
+    {% for i in voyage %}
+        <center><H1>Voici les clients du voyage numéro  {{ i.idVoyage}}
+
+                {% if i.type == 'train' %}
+                du train
+                {% elseif i.type == 'bus' %}
+               du bus
+                {% else %}
+                de l'avion
+                {% endif %}
+                n° {{ i.num_transport }}
+            </H1>
+        </center>
+    {%  endfor %}
+
+
+    <table border="black">
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Téléphone</th>
+            <th>Email</th>
+        </tr>
+
+
+        {% for i in pass %}
+            <tr>
+                <td>{{ i.nom }} </td>
+                <td> {{ i.prenom }} </td>
+
+                {% if i.telephone == null %}
+                    <td> Non renseigné </td>
+                {% else %}
+                    <td>{{ i.telephone }} </td>
+                {% endif %}
+
+
+                {% if i.email == null %}
+                    <td> Non renseigné </td>
+                {% else %}
+                    <td>{{ i.email }} </td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </table>
+</center>
+</body>
+</html>
