@@ -22,7 +22,7 @@ class MonController extends AbstractController
 
         $entityManager = $this->getDoctrine()->getManager();
         //$adresses = $entityManager -> getRepository(Adresse::class)-> findAll();
-        return $this->render('formAdresse.html.twig');
+        return $this->render('formPassager.html.twig');
 
     }
 
@@ -46,12 +46,11 @@ class MonController extends AbstractController
             $voyageur->setNom($_GET['user_nom']) ;
             $voyageur->setPrenom($_GET['user_prenom']);
 
-        $entityManager = $this->getDoctrine()->getManager();
+            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($voyageur);
             $entityManager->flush();
 
-        $contact = new Contact();
-
+            $contact = new Contact();
            if (($_GET['user_mail']!=null) && ($_GET['user_telephone']!=null)) {
 
             $contact->setMethode('mail');
@@ -62,9 +61,12 @@ class MonController extends AbstractController
             $contact2->setMethode('telephone');
             $contact2->setValeur($_GET['user_telephone']);
             $contact2 -> setIdVoyageur($voyageur -> getIdVoyageur()) ;
+               $entityManager = $this->getDoctrine()->getManager();
+               $entityManager->persist($contact2);
+               $entityManager->flush();
            }
 
-            else if (($_GET['user_mail']=null) ) {
+            else if (($_GET['user_telephone']!=null) ) {
                 $contact->setMethode('telephone');
                 $contact->setValeur($_GET['user_telephone']);
                 $contact -> setIdVoyageur($voyageur -> getIdVoyageur()) ;
@@ -79,7 +81,7 @@ class MonController extends AbstractController
 
 
 
-        $entityManager = $this->getDoctrine()->getManager();
+            $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($contact);
             $entityManager->flush();
 
@@ -90,6 +92,9 @@ class MonController extends AbstractController
         return $this->render('base.html.twig',['data'=>$passagers]);
 
     }
+
+
+
 
     /**
      * @return Response
@@ -154,7 +159,6 @@ class MonController extends AbstractController
         $allpassagers = $entityManager->getRepository(Passager::class)->findById($id_Allpassagers);
 
         return $this->render('passagersPourUnPassager.html.twig', [ 'passagers'=> $allpassagers]);
-
 
     }
 
