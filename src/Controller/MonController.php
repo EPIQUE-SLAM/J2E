@@ -1,64 +1,93 @@
 <?php
 
 namespace App\Controller;
+use App\Entity\Contact;
 use App\Entity\Passager;
 use App\Entity\Dossier;
 use App\Entity\Voyage;
+use App\Entity\Voyageur;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class MonController extends AbstractController
 {
+
+    /**
+     * @return Response
+     * @Route(path="/formPassager")
+     */
+    public function formPassager()
+    {
+
+        $entityManager = $this->getDoctrine()->getManager();
+        //$adresses = $entityManager -> getRepository(Adresse::class)-> findAll();
+        return $this->render('formAdresse.html.twig');
+
+    }
+
+
     /**
      * @return Response
      * @Route(path="/insertion")
      */
     public function insertion()
     {
-//
+
 //        $passager = new  Passager();
 //        $passager->setId(1);
 //        $passager->setPrenom("maxime");
 //        $passager->setNom("danel");
 //        $passager->setEmail("maximedanel@hotmail.fr");
 //        $passager->setTelephone(+33626366084);
-//        //$data = $passager;
+        //$data = $passager;
 
-//            $passager = new Passager();
-//            $passager->setNom(_GET['user_nom']) ;
-//            $passager->setPrenom(_GET['user_prenom']);
-//            $passager->setEmail(_GET['user_email']);
-//            $passager->setTelephone(_GET['user_telephone']);
-//
-//            $entityManager = $this->getDoctrine()->getManager();
-//            $entityManager->persist($passager);
-//            $entityManager->flush();
+            $voyageur = new Voyageur();
+            $voyageur->setNom($_GET['user_nom']) ;
+            $voyageur->setPrenom($_GET['user_prenom']);
 
-        $dbname='bdd.sqlite';
-        $mytable ="Contact";
-        $mytable2 ="Voyageur";
+        $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($voyageur);
+            $entityManager->flush();
 
-        if(!class_exists('SQLite3'))
-            die("SQLite 3 NOT supported.");
+        $contact = new Contact();
 
-        $base=new SQLite3($dbname, 0666);
+           if (($_GET['user_mail']!=null) && ($_GET['user_telephone']!=null)) {
 
-        $nom = "Danel";
-        $prenom="Maxime";
-        $methode = "email";
-        $valeur="mailtest@gmail.com";
+            $contact->setMethode('mail');
+            $contact->setValeur($_GET['user_mail']);
+            $contact -> setIdVoyageur($voyageur -> getIdVoyageur()) ;
+
+            $contact2 = new Contact();
+            $contact2->setMethode('telephone');
+            $contact2->setValeur($_GET['user_telephone']);
+            $contact2 -> setIdVoyageur($voyageur -> getIdVoyageur()) ;
+           }
+
+            else if (($_GET['user_mail']=null) ) {
+                $contact->setMethode('telephone');
+                $contact->setValeur($_GET['user_telephone']);
+                $contact -> setIdVoyageur($voyageur -> getIdVoyageur()) ;
+            }
+
+            else if (($_GET['user_mail']!=null) ) {
+                $contact->setMethode('mail');
+                $contact->setValeur($_GET['user_mail']);
+                $contact -> setIdVoyageur($voyageur -> getIdVoyageur()) ;
+            }
 
 
-        $query = "INSERT INTO $mytable2(nom,prenom) 
-                VALUES ('$nom', '$prenom')";
-        $results = $base->exec($query);
 
 
-           // $adresses = $entityManager->getRepository(Passager::class)->findAll();
+        $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($contact);
+            $entityManager->flush();
 
 
-        return $this->render('base.html.twig',['data'=>$results]);
+            $passagers = $entityManager->getRepository(Passager::class)->findAll();
+
+
+        return $this->render('base.html.twig',['data'=>$passagers]);
 
     }
 
@@ -110,18 +139,25 @@ class MonController extends AbstractController
 
     }
 
-//    /**
-//     * @return Response
-//     * @Route(path="/formAdresse")
-//     */
-//    public function formAdresse()
-//    {
-//
-//        $entityManager = $this->getDoctrine()->getManager();
-//        $adresses = $entityManager -> getRepository(Adresse::class)-> findAll();
-//        return $this->render('formAdresse.html.twig');
-//
-//    }
+
+    /**
+     * @return Response
+     * @Route(path="/affichagePassagersPourUnPassager")
+     */
+
+    public function affichagePassagersPourUnPassager(){
+
+        $id_passager = 3;
+        $entityManager = $this->getDoctrine()->getManager();
+        $voyageOfPassager = $entityManager->getRepository(Dossier::class)->findByIdPassager($id_passager);
+        $id_Allpassagers = $entityManager->getRepository(Dossier::class)->findByVoyage($voyageOfPassager);
+        $allpassagers = $entityManager->getRepository(Passager::class)->findById($id_Allpassagers);
+
+        return $this->render('passagersPourUnPassager.html.twig', [ 'passagers'=> $allpassagers]);
+
+
+    }
+
 //
 //
 //    /**
