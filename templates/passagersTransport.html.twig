@@ -34,27 +34,28 @@
             <th>Email</th>
         </tr>
 
-
         {% for i in pass %}
-            <tr>
-                <td>{{ i.id }} </td>
-                <td>{{ i.nom }} </td>
-                <td> {{ i.prenom }} </td>
+        <tr>
+            <td>{{ i.id }} </td>
+            <td>{{ i.nom }} </td>
+            <td> {{ i.prenom }} </td>
 
-                {% if i.telephone == null %}
-                    <td> Non renseigné </td>
-                {% else %}
-                    <td>{{ i.telephone }} </td>
-                {% endif %}
+            {% if i.telephone == null %}
+                <td> Non renseigné </td>
+            {% else %}
+                <td>{{ i.telephone }} </td>
+            {% endif %}
 
 
-                {% if i.email == null %}
-                    <td> Non renseigné </td>
-                {% else %}
-                    <td>{{ i.email }} </td>
-                {% endif %}
-            </tr>
+            {% if i.email == null %}
+                <td> Non renseigné </td>
+            {% else %}
+                <td>{{ i.email }} </td>
+            {% endif %}
+        </tr>
         {% endfor %}
+
+
     </table>
 </center>
 </body>

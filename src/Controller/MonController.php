@@ -34,14 +34,6 @@ class MonController extends AbstractController
     public function insertion()
     {
 
-//        $passager = new  Passager();
-//        $passager->setId(1);
-//        $passager->setPrenom("maxime");
-//        $passager->setNom("danel");
-//        $passager->setEmail("maximedanel@hotmail.fr");
-//        $passager->setTelephone(+33626366084);
-        //$data = $passager;
-
             $voyageur = new Voyageur();
             $voyageur->setNom($_GET['user_nom']) ;
             $voyageur->setPrenom($_GET['user_prenom']);
@@ -115,7 +107,7 @@ class MonController extends AbstractController
      */
     public function affichageInfoVoyage(){
 
-        $id_passager = 1;
+        $id_passager = 2;
         $entityManager = $this->getDoctrine()->getManager();
         $passagers = $entityManager->getRepository(Passager::class)->findById($id_passager);
         $dossiers = $entityManager->getRepository(Dossier::class)->findByIdPassager($id_passager);
@@ -131,15 +123,22 @@ class MonController extends AbstractController
      */
     public function affichagePassagersTransport(){
 
-        $id_voyage = 1;
+        $id_voyage = 101;
         $entityManager = $this->getDoctrine()->getManager();
         $dossierVoyage = $entityManager->getRepository(Dossier::class)->findByVoyage($id_voyage);
         $voyage = $entityManager->getRepository(Voyage::class)->findByIdVoyage($id_voyage);
 
-        $id_passager = $entityManager->getRepository(Dossier::class)->findByVoyage($id_voyage);
-        $passager = $entityManager->getRepository(Passager::class)->findById($id_passager);
+        $test = [];
+        foreach ($dossierVoyage as $d) {
+            $test [] = $d->getIdPassager();
+        }
+        $passager= $entityManager->getRepository(Passager::class)->findById($test);
 
-        return $this->render('passagersTransport.html.twig', ['dossierVoyage'=>$dossierVoyage, 'voyage'=>$voyage, 'pass'=> $passager]);
+
+
+
+
+        return $this->render('passagersTransport.html.twig', [  'voyage'=>$voyage, 'pass'=> $passager, 'doss' =>$dossierVoyage]);
 
 
     }
