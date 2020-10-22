@@ -36,7 +36,40 @@
 
 
 </table>
+    <br>
+    Voir le dossier d'un passager
+    <br>
 
+    <form action="/affichageInfoVoyage" method="get">
+        <label>
+            <SELECT NAME="listeP">
+                {% for i in data %}
+                <OPTION VALUE={{ i.id }} >  {{ i.id }}  : {{ i.nom}} {{ i.prenom }}
+                    {% endfor %}
+            </SELECT>
+        </label>
+
+            <button type="submit">Voir les informations</button>
+
+    </form>
+
+
+    <br>
+    Voir les passagers ayant voyagé avec un passager donné
+    <br>
+
+    <form action="/affichagePassagersPourUnPassager" method="get">
+        <label>
+            <SELECT NAME="listeP">
+                {% for i in data %}
+                <OPTION VALUE={{ i.id }} >  {{ i.id }}  : {{ i.nom}} {{ i.prenom }}
+                    {% endfor %}
+            </SELECT>
+        </label>
+
+        <button type="submit">Voir les passagers</button>
+
+    </form>
 </center>
 
 </body>

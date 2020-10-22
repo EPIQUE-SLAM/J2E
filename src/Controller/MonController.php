@@ -13,7 +13,20 @@ use Symfony\Component\Routing\Annotation\Route;
 class MonController extends AbstractController
 {
 
+
     /**
+     * @return Response
+     * @Route(path="/main")
+     */
+    public function main()
+    {
+
+        $entityManager = $this->getDoctrine()->getManager();
+        return $this->render('main.html.twig');
+
+    }
+
+        /**
      * @return Response
      * @Route(path="/formPassager")
      */
@@ -101,13 +114,27 @@ class MonController extends AbstractController
 
     }
 
+
+    /**
+     * @return Response
+     * @Route(path="/affichageVoyages")
+     */
+    public function affichageVoyages(){
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $voyages = $entityManager->getRepository(Voyage::class)->findAll();
+        return $this->render('voyages.html.twig', ['data' => $voyages]);
+
+
+    }
+
     /**
      * @return Response
      * @Route(path="/affichageInfoVoyage")
      */
     public function affichageInfoVoyage(){
 
-        $id_passager = 2;
+        $id_passager = $_GET['listeP'];
         $entityManager = $this->getDoctrine()->getManager();
         $passagers = $entityManager->getRepository(Passager::class)->findById($id_passager);
         $dossiers = $entityManager->getRepository(Dossier::class)->findByIdPassager($id_passager);
@@ -123,22 +150,21 @@ class MonController extends AbstractController
      */
     public function affichagePassagersTransport(){
 
-        $id_voyage = 101;
+        $id_voyage = $_GET['listeV'];
         $entityManager = $this->getDoctrine()->getManager();
         $dossierVoyage = $entityManager->getRepository(Dossier::class)->findByVoyage($id_voyage);
         $voyage = $entityManager->getRepository(Voyage::class)->findByIdVoyage($id_voyage);
 
-        $test = [];
+
+        $idPassager = [];
         foreach ($dossierVoyage as $d) {
-            $test [] = $d->getIdPassager();
+            $idPassager [] = $d->getIdPassager();
         }
-        $passager= $entityManager->getRepository(Passager::class)->findById($test);
+        $passager= $entityManager->getRepository(Passager::class)->findById($idPassager);
 
 
 
-
-
-        return $this->render('passagersTransport.html.twig', [  'voyage'=>$voyage, 'pass'=> $passager, 'doss' =>$dossierVoyage]);
+        return $this->render('passagersTransport.html.twig', [  'voyage'=>$voyage, 'pass'=> $passager, 'doss' =>$dossierVoyage, 'numero' => $id_voyage]);
 
 
     }
@@ -151,13 +177,25 @@ class MonController extends AbstractController
 
     public function affichagePassagersPourUnPassager(){
 
-        $id_passager = 3;
+        $id_passager = $_GET['listeP'];
         $entityManager = $this->getDoctrine()->getManager();
         $voyageOfPassager = $entityManager->getRepository(Dossier::class)->findByIdPassager($id_passager);
-        $id_Allpassagers = $entityManager->getRepository(Dossier::class)->findByVoyage($voyageOfPassager);
-        $allpassagers = $entityManager->getRepository(Passager::class)->findById($id_Allpassagers);
 
-        return $this->render('passagersPourUnPassager.html.twig', [ 'passagers'=> $allpassagers]);
+        $idVoyage = [];
+        foreach ($voyageOfPassager as $v) {
+            $idVoyage [] = $v->getVoyage();
+        }
+        $id_Allpassagers = $entityManager->getRepository(Dossier::class)->findByVoyage($idVoyage);
+
+
+        $idPassagers = [];
+        foreach ($id_Allpassagers as $p) {
+            $idPassagers [] = $p->getIdPassager();
+        }
+
+        $allpassagers = $entityManager->getRepository(Passager::class)->findById($idPassagers);
+
+        return $this->render('passagersPourUnPassager.html.twig', [ 'passagers'=> $allpassagers, 'numPass' => $id_passager]);
 
     }
 

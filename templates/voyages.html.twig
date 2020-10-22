@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.min.css">
+    <title>test</title>
+</head>
+<body>
+
+<center><H1>Liste de l'ensemble des voyages</H1></center>
+<center>
+    <table border="black">
+        <tr>
+            <th>Numéro du voyage</th>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Code</th>
+            <th>Départ</th>
+            <th>Arrivée</th>
+        </tr>
+        {% for i in data %}
+            <tr>
+                <td>{{ i.idVoyage }}</td>
+                <td>{{ i.date }}</td>
+                <td>{{ i.type}}</td>
+                <td>{{ i.num_transport }} </td>
+                <td>{{ i.lieu_depart }}</td>
+                <td>{{ i.lieu_arrivee }}</td>
+            </tr>
+        {% endfor %}
+
+        <br>
+
+        <tr>
+
+        </tr>
+
+
+    </table>
+
+    <br>
+    Voir les passagers d'un voyage
+    <br>
+
+    <form action="/affichagePassagersTransport" method="get">
+        <label>
+            <SELECT NAME="listeV">
+                {% for i in data %}
+                <OPTION VALUE={{ i.idVoyage }} >  {{ i.idVoyage }}  : {{ i.lieu_depart}} {{ i.lieu_arrivee }}
+                    {% endfor %}
+            </SELECT>
+        </label>
+
+        <button type="submit">Voir les passagers</button>
+
+    </form>
+
+</center>
+
+</body>
+</html>

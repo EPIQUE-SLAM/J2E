@@ -8,20 +8,9 @@
 
 <center>
 
-    {% for i in voyage %}
-        <center><H1>Voici les clients du voyage numéro  {{ i.idVoyage}}
 
-                {% if i.type == 'train' %}
-                du train
-                {% elseif i.type == 'bus' %}
-               du bus
-                {% else %}
-                de l'avion
-                {% endif %}
-                n° {{ i.num_transport }}
-            </H1>
+        <center><H1>Voici les clients du voyage numéro  {{numero}} </H1>
         </center>
-    {%  endfor %}
 
 
     <table border="black">

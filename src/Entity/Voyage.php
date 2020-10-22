@@ -44,12 +44,12 @@ class Voyage
     public $num_transport;
 
     /**
-     * @ORM\Column(name="lieu_depart", type="integer")
+     * @ORM\Column(name="lieu_depart", type="text")
      */
     public $lieu_depart;
 
     /**
-     * @ORM\Column(name="lieu_arrivee", type="integer")
+     * @ORM\Column(name="lieu_arrivee", type="text")
      */
     public $lieu_arrivee;
 

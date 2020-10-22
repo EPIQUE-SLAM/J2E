@@ -9,7 +9,8 @@
 
 <center>
     {% for i in pass %}
-        <center><H1>Voici les informations du client {{ i.nom }} {{ i.prenom }}  </H1></center>
+        <center>
+            <b> <u> <H1>Voici les informations du client {{ i.nom }} {{ i.prenom }} </u> </b></H1></center>
             Nom du client : {{ i.nom }} <br>
             Prénom du client : {{ i.prenom }} <br>
 
@@ -22,7 +23,8 @@
         {% endif %}
     {% endfor %}
 
- <center><H1>Voici ces informations de voyage </H1></center>
+    <br>
+    <center><H4> <b>Voici ces voyages </b></H4></center>
     <table border="black">
         <tr>
             <th>Référence dossier</th>
