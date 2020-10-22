@@ -1,0 +1,48 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet"  href="https://bootswatch.com/4/darkly/bootstrap.min.css">
+
+    <title>Ajouter un dossier client</title>
+</head>
+<body>
+
+
+<center><h1> Ajouter un dossier client</h1></center>
+<br>
+<center>
+
+
+        <H4> Veuillez choisir un client</H4>
+
+        <form action="/newDossier" method="get">
+            <label>
+                <SELECT NAME="listeP">
+                    {% for i in pass %}
+                    <OPTION VALUE={{ i.id }} >  {{ i.id }}  : {{ i.nom}} {{ i.prenom }}
+                        {% endfor %}
+                </SELECT>
+            </label>
+
+            <H4> Veuillez choisir un voyage</H4>
+            <label>
+                <SELECT NAME="listeV">
+                    {% for i in voyage %}
+                    <OPTION VALUE={{ i.idVoyage }} >  {{ i.idVoyage }}  : {{ i.lieu_depart}} {{ i.lieu_arrivee }}
+                        {% endfor %}
+                </SELECT>
+            </label>
+
+
+            <button type="submit">Enregistrer</button>
+
+
+    </form>
+
+</center>
+
+</body>
+</html>

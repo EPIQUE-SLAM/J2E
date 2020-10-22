@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 use App\Entity\Contact;
+use App\Entity\Dossiers;
 use App\Entity\Passager;
 use App\Entity\Dossier;
 use App\Entity\Voyage;
@@ -98,6 +99,91 @@ class MonController extends AbstractController
 
     }
 
+    /**
+     * @return Response
+     * @Route(path="/formDossier")
+     */
+    public function formDossier()
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        //$adresses = $entityManager -> getRepository(Adresse::class)-> findAll();
+        $allVoyages = $entityManager->getRepository(Voyage::class)->findAll();
+        $allPassagers = $entityManager->getRepository(Passager::class)->findAll();
+
+        return $this->render('formDossier.html.twig',[ 'voyage'=>$allVoyages, 'pass'=>$allPassagers]);
+    }
+
+    /**
+     * @return Response
+     * @Route(path="/newDossier")
+     */
+    public function newDossier()
+    {
+
+        $dossier = new Dossiers();
+        $dossier->setIdVoyageur($_GET['listeP']) ;
+        $dossier -> setIdVoyage($_GET['listeV']);
+
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $voyage = $entityManager->getRepository(Voyage::class)->findOneById_Voyage($_GET['listeV']);
+
+        print_r($voyage);
+        $methode = $voyage -> getType();
+        $date = $voyage -> getDate();
+        $depart = $voyage -> getLieuDepart();
+        $arrivee = $voyage -> getLieuArrivee();
+
+
+        $dossier -> setMethode($methode);
+        $dossier -> setDate($date);
+        $dossier -> setDepart($depart);
+        $dossier -> setArrivee($arrivee);
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($dossier);
+        $entityManager->flush();
+        return $this->render('main.html.twig');
+        //$contact = new Contact();
+   /*     if (($_GET['user_mail']!=null) && ($_GET['user_telephone']!=null)) {
+
+            $contact->setMethode('mail');
+            $contact->setValeur($_GET['user_mail']);
+            $contact -> setIdVoyageur($voyageur -> getIdVoyageur()) ;
+
+            $contact2 = new Contact();
+            $contact2->setMethode('telephone');
+            $contact2->setValeur($_GET['user_telephone']);
+            $contact2 -> setIdVoyageur($voyageur -> getIdVoyageur()) ;
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($contact2);
+            $entityManager->flush();
+        }
+
+        else if (($_GET['user_telephone']!=null) ) {
+            $contact->setMethode('telephone');
+            $contact->setValeur($_GET['user_telephone']);
+            $contact -> setIdVoyageur($voyageur -> getIdVoyageur()) ;
+        }
+
+        else if (($_GET['user_mail']!=null) ) {
+            $contact->setMethode('mail');
+            $contact->setValeur($_GET['user_mail']);
+            $contact -> setIdVoyageur($voyageur -> getIdVoyageur()) ;
+        }
+
+
+
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($contact);
+        $entityManager->flush();
+
+
+        $passagers = $entityManager->getRepository(Passager::class)->findAll();
+*/
+
+    }
 
 
 
