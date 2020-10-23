@@ -180,7 +180,8 @@ class MonController extends AbstractController
 
         $entityManager = $this->getDoctrine()->getManager();
         $voyages = $entityManager->getRepository(Voyage::class)->findAll();
-        return $this->render('voyages.html.twig', ['data' => $voyages]);
+        $passagers = $entityManager->getRepository(Passager::class)->findAll();
+        return $this->render('voyages.html.twig', ['data' => $voyages, 'pass' => $passagers]);
 
 
     }
