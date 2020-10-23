@@ -27,7 +27,20 @@ class MonController extends AbstractController
 
     }
 
-        /**
+
+    /**
+     * @return Response
+     * @Route(path="/affichagePassagers")
+     */
+    public function affichagePassagers(){
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $passagers = $entityManager->getRepository(Passager::class)->findAll();
+        return $this->render('base.html.twig', ['data' => $passagers]);
+
+    }
+
+    /**
      * @return Response
      * @Route(path="/formPassager")
      */
@@ -99,6 +112,18 @@ class MonController extends AbstractController
 
     /**
      * @return Response
+     * @Route(path="/affichageDossiers")
+     */
+    public function affichageDossiers(){
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $dossiers = $entityManager->getRepository(Dossier::class)->findAll();
+        return $this->render('dossiers.html.twig', ['data' => $dossiers]);
+
+    }
+
+    /**
+     * @return Response
      * @Route(path="/formDossier")
      */
     public function formDossier()
@@ -143,32 +168,6 @@ class MonController extends AbstractController
 
         $dossiers = $entityManager->getRepository(Dossier::class)->findAll();
         return $this->render('dossiers.html.twig', ['data'=>$dossiers]);
-
-    }
-
-
-    /**
-     * @return Response
-     * @Route(path="/affichageDossiers")
-     */
-    public function affichageDossiers(){
-
-        $entityManager = $this->getDoctrine()->getManager();
-        $dossiers = $entityManager->getRepository(Dossier::class)->findAll();
-        return $this->render('dossiers.html.twig', ['data' => $dossiers]);
-
-    }
-
-
-    /**
-     * @return Response
-     * @Route(path="/affichagePassagers")
-     */
-    public function affichagePassagers(){
-
-        $entityManager = $this->getDoctrine()->getManager();
-        $passagers = $entityManager->getRepository(Passager::class)->findAll();
-        return $this->render('base.html.twig', ['data' => $passagers]);
 
     }
 

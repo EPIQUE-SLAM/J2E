@@ -11,19 +11,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="72448d9b-0e58-43ee-bf05-6e6d12e0046c" name="Default Changelist" comment="lkt">
-      <change afterPath="$PROJECT_DIR$/public/images/logo_avion.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/dossiers.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/MonController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MonController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/formDossier.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/formDossier.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/formPassager.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/formPassager.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/infoVoyage.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/infoVoyage.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/main.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/main.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/passagersPourUnPassager.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/passagersPourUnPassager.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/passagersTransport.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/passagersTransport.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/voyages.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/voyages.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -192,7 +181,7 @@
       <workItem from="1603261812643" duration="29332000" />
       <workItem from="1603301704809" duration="231000" />
       <workItem from="1603348189231" duration="33851000" />
-      <workItem from="1603436023764" duration="3770000" />
+      <workItem from="1603436023764" duration="5922000" />
     </task>
     <task id="LOCAL-00001" summary="lkt">
       <created>1603263043019</created>
@@ -243,7 +232,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603373335929</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="lkt">
+      <created>1603439871798</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1603439871798</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -340,10 +336,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="539" height="446" key="SwitcherDM/0.0.1280.680@0.0.1280.680" timestamp="1603186274344" />
-    <state x="233" y="74" key="Vcs.Push.Dialog.v2" timestamp="1603373338080">
+    <state x="233" y="74" key="Vcs.Push.Dialog.v2" timestamp="1603439874057">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="233" y="74" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1603373338080" />
+    <state x="233" y="74" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1603439874057" />
     <state x="540" y="235" key="com.intellij.database.actions.DdlActions$CreateObject$1" timestamp="1601276166847">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
