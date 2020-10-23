@@ -1,7 +1,5 @@
-<html>
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.min.css">
+{% extends 'main.html.twig' %}
+{% block body %}
     <title>test</title>
 </head>
 <body>
@@ -13,8 +11,8 @@
         </center>
 
 
-    <table border="black">
-        <tr>
+    <table class="table table-hover">
+        <tr class="table-info">
 
             <th>Identifiant</th>
             <th>Nom</th>
@@ -24,7 +22,7 @@
         </tr>
 
         {% for i in pass %}
-        <tr>
+        <tr class="table-light">
             <td>{{ i.id }} </td>
             <td>{{ i.nom }} </td>
             <td> {{ i.prenom }} </td>
@@ -48,4 +46,4 @@
     </table>
 </center>
 </body>
-</html>
+{% endblock %}

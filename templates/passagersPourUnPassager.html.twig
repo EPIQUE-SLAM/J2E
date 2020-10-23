@@ -1,7 +1,5 @@
-<html>
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.min.css">
+{% extends 'main.html.twig' %}
+{% block body %}
     <title>test</title>
 </head>
 <body>
@@ -12,8 +10,8 @@
     </center>
 
 
-    <table border="black">
-        <tr>
+    <table class="table table-hover">
+        <tr class="table-info">
 
             <th>Identifiant</th>
             <th>Nom</th>
@@ -24,27 +22,27 @@
 
 
         {% for i in passagers %}
-            <tr>
+            <tr class="table-light">
 
-                <td>{{ i.id}} </td>
-               <td>{{ i.nom }} </td>
-                <td> {{ i.prenom }} </td>
+                <td><p class="text-primary"><b>{{ i.id}} </b></p>  </td>
+               <td><p class="text-primary"><b>{{ i.nom }} </b></p>  </td>
+                <td> <p class="text-primary"><b>{{ i.prenom }} </b></p> </td>
 
                 {% if i.telephone == null %}
-                    <td> Non renseigné </td>
+                    <td><p class="text-primary"><b> Non renseigné </b></p> </td>
                 {% else %}
-                    <td>{{ i.telephone }} </td>
+                    <td><p class="text-primary"><b>{{ i.telephone }} </b></p> </td>
                 {% endif %}
 
 
                 {% if i.email == null %}
-                    <td> Non renseigné </td>
+                    <td> <p class="text-primary"><b>Non renseigné</b></p>  </td>
                 {% else %}
-                    <td>{{ i.email }} </td>
+                    <td><p class="text-primary"><b>{{ i.email }} </b></p> </td>
                 {% endif %}
             </tr>
         {% endfor %}
     </table>
 </center>
 </body>
-</html>
+{% endblock %}

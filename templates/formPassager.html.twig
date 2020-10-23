@@ -1,49 +1,47 @@
 
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-   <link rel="stylesheet"  href="https://bootswatch.com/4/darkly/bootstrap.min.css">
+{% extends 'main.html.twig' %}
+{% block body %}
 
     <title>Formulaire d'ajout client</title>
 </head>
 <body>
-
-
-<center><h1> Formulaire </h1></center>
 <br>
-<center>
+<br>
 <form action="/insertion" method="get">
+    <fieldset>
+       <center> <legend>Veuillez remplir les informations du client</legend> </center>
 
 
-    <H4> Veuillez remplir vos informations personnels</H4>
-    <div>
-        <label for="nom">Nom :</label>
-        <input type="text" id="nom" name="user_nom">
-    </div>
+        <div class="form-group">
+            <label for="nom">Nom</label>
+            <input class="form-control" type="text" id="nom" name="user_nom" placeholder="Entrez le nom du client">
+        </div>
+
+        <div class="form-group">
+                <label for="prenom">Prénom :</label>
+                <input class="form-control" type="text" id="prenom" name="user_prenom" placeholder="Entrez le prénom du client">
+        </div>
 
 
-    <div>
-        <label for="prenom">Prénom :</label>
-        <input type="text" id="prenom" name="user_prenom">
-    </div>
+        <div class="form-group">
+            <label for="telephone">Téléphone :</label>
+            <input class="form-control" type="text" id="telephone" name="user_telephone" placeholder="Entrez un numéro de type 0X XX XX XX XX">
+        </div>
 
-    <div>
-        <label for="telephone">Téléphone :</label>
-        <input type="text" id="telephone" name="user_telephone">
-    </div>
 
-    <div>
-        <label for="mail">Mail :</label>
-        <input type="text" id="mail" name="user_mail">
-    </div>
+        <div class="form-group">
+            <label for="mail">Mail :</label>
+            <input class="form-control" type="text" id="mail" name="user_mail" placeholder="Entrez l'email du client">
+        </div>
 
-    <div class="button">
-        <button type="submit">Enregistrer</button>
-    </div>
+        <center>
+        <div class="button">
+            <button type="submit" class="btn btn-success">Enregistrer</button>
+        </div>
+        </center>
+        </fieldset>
 </form>
-</center>
 
 </body>
-</html>
+{% endblock %}

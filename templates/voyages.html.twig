@@ -1,16 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.min.css">
+{% extends 'main.html.twig' %}
+{% block body %}
     <title>test</title>
 </head>
 <body>
 
 <center><H1>Liste de l'ensemble des voyages</H1></center>
 <center>
-    <table border="black">
-        <tr>
+    <table class="table table-hover">
+        <tr class="table-info">
             <th>Numéro du voyage</th>
             <th>Date</th>
             <th>Type</th>
@@ -19,13 +16,13 @@
             <th>Arrivée</th>
         </tr>
         {% for i in data %}
-            <tr>
-                <td>{{ i.idVoyage }}</td>
-                <td>{{ i.date }}</td>
-                <td>{{ i.type}}</td>
-                <td>{{ i.num_transport }} </td>
-                <td>{{ i.lieu_depart }}</td>
-                <td>{{ i.lieu_arrivee }}</td>
+            <tr class="table-light">
+                <td><p class="text-primary"><b>{{ i.idVoyage }}</b></p></td>
+                <td><p class="text-primary"><b>{{ i.date }}</b></p></td>
+                <td><p class="text-primary"><b>{{ i.type}}</b></p></td>
+                <td><p class="text-primary"><b>{{ i.num_transport }}</b></p> </td>
+                <td><p class="text-primary"><b>{{ i.lieu_depart }}</b></p></td>
+                <td><p class="text-primary"><b>{{ i.lieu_arrivee }}</b></p></td>
             </tr>
         {% endfor %}
 
@@ -42,20 +39,23 @@
     Voir les passagers d'un voyage
     <br>
 
+    <div class="form-group">
     <form action="/affichagePassagersTransport" method="get">
         <label>
-            <SELECT NAME="listeV">
+            <SELECT class="custom-select" NAME="listeV">
                 {% for i in data %}
                 <OPTION VALUE={{ i.idVoyage }} >  {{ i.idVoyage }}  : {{ i.lieu_depart}} {{ i.lieu_arrivee }}
                     {% endfor %}
             </SELECT>
         </label>
+       <br>
 
-        <button type="submit">Voir les passagers</button>
+        <center><button type="submit" class="btn btn-danger btn-sm">Voir les passagers</button></center>
 
     </form>
+    </div>
 
 </center>
 
 </body>
-</html>
+{% endblock %}

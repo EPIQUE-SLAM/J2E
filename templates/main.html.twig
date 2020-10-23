@@ -1,35 +1,52 @@
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
+
+    <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.min.css">
-    <title>test</title>
+{% block stylesheets %}{% endblock %}
 </head>
-<body>
+<body background = "images/fde.jpg">
 
-<center>
-    <h4> Affichages </h4>
-    <table>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="/main">Traveller Manager</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-    <tr>
+    <div class="collapse navbar-collapse" id="navbarColor01">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/main">Home
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/affichagePassagers">Voir tous les clients</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/affichageVoyages">Voir les voyages</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/formPassager">Ajouter un nouveau client</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/formDossier">Ajouter un nouveau dossier</a>
+            </li>
 
-      <td>  <a href = "/affichagePassagers"> <input type="button" value="Voir les passagers"> </a> </td>
-        <td> <a href="/affichageVoyages"> <input type="button" value="Voir les voyages"> </a> </td>
-    </tr>
+        </ul>
 
-    </table>
+    </div>
+</nav>
 
-    <br>
 
-    <h4> Ajout </h4>
-    <table>
 
-        <tr>
-         <td>  <a href = "/formPassager"> <input type="button" value="Ajouter les informations d'un nouveau client"> </a> </td>
-        </tr>
-            <tr><td>  <a href = "/formDossier"> <input type="button" value="Ajouter un nouveau dossier"> </a> </td>
-               </tr>
 
-    </table>
-</center>
+<div class="container">
+    {% block body %}{% endblock %}
+    {% block javascripts %}{% endblock %}
+</div>
+
 </body>
 </html>

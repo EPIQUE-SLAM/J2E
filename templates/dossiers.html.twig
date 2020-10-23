@@ -1,0 +1,39 @@
+{% extends 'main.html.twig' %}
+{% block body %}
+    <title>test</title>
+    </head>
+    <body>
+    <br>
+    <br>
+    <center><H1>Liste des dossiers</H1></center>
+    <center>
+        <table class="table table-hover">
+            <thead>
+
+            <tr class="table-info">
+                <th scope="col"> Référence du dossier</th>
+                <th scope="col">Voyage</th>
+                <th scope="col">Date</th>
+                <th scope="col">Identifiant du passager</th>
+            </tr>
+            </thead>
+            {% for i in data %}
+            <tr class="table-light">
+                <td><p class="text-primary"><b>{{ i.reference_dossier }}</b></p></td>
+                <td><p class="text-primary"><b>{{ i.voyage }}</b></p></td>
+                <td><p class="text-primary"><b>{{ i.date }}</b></p></td>
+                <td><p class="text-primary"><b>{{ i.idPassager }}</b></p> </td>
+            </tr>
+            <p>
+                {% endfor %}
+
+                <br>
+
+                <tr>
+
+                </tr>
+
+        </table>
+
+    </body>
+{% endblock %}

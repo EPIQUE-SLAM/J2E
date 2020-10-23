@@ -85,8 +85,6 @@ class MonController extends AbstractController
             }
 
 
-
-
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($contact);
             $entityManager->flush();
@@ -128,7 +126,6 @@ class MonController extends AbstractController
 
         $voyage = $entityManager->getRepository(Voyage::class)->findOneById_Voyage($_GET['listeV']);
 
-        print_r($voyage);
         $methode = $voyage -> getType();
         $date = $voyage -> getDate();
         $depart = $voyage -> getLieuDepart();
@@ -143,48 +140,24 @@ class MonController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($dossier);
         $entityManager->flush();
-        return $this->render('main.html.twig');
-        //$contact = new Contact();
-   /*     if (($_GET['user_mail']!=null) && ($_GET['user_telephone']!=null)) {
 
-            $contact->setMethode('mail');
-            $contact->setValeur($_GET['user_mail']);
-            $contact -> setIdVoyageur($voyageur -> getIdVoyageur()) ;
-
-            $contact2 = new Contact();
-            $contact2->setMethode('telephone');
-            $contact2->setValeur($_GET['user_telephone']);
-            $contact2 -> setIdVoyageur($voyageur -> getIdVoyageur()) ;
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($contact2);
-            $entityManager->flush();
-        }
-
-        else if (($_GET['user_telephone']!=null) ) {
-            $contact->setMethode('telephone');
-            $contact->setValeur($_GET['user_telephone']);
-            $contact -> setIdVoyageur($voyageur -> getIdVoyageur()) ;
-        }
-
-        else if (($_GET['user_mail']!=null) ) {
-            $contact->setMethode('mail');
-            $contact->setValeur($_GET['user_mail']);
-            $contact -> setIdVoyageur($voyageur -> getIdVoyageur()) ;
-        }
-
-
-
-
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($contact);
-        $entityManager->flush();
-
-
-        $passagers = $entityManager->getRepository(Passager::class)->findAll();
-*/
+        $dossiers = $entityManager->getRepository(Dossier::class)->findAll();
+        return $this->render('dossiers.html.twig', ['data'=>$dossiers]);
 
     }
 
+
+    /**
+     * @return Response
+     * @Route(path="/affichageDossiers")
+     */
+    public function affichageDossiers(){
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $dossiers = $entityManager->getRepository(Dossier::class)->findAll();
+        return $this->render('dossiers.html.twig', ['data' => $dossiers]);
+
+    }
 
 
     /**
@@ -196,7 +169,6 @@ class MonController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         $passagers = $entityManager->getRepository(Passager::class)->findAll();
         return $this->render('base.html.twig', ['data' => $passagers]);
-
 
     }
 
@@ -285,83 +257,7 @@ class MonController extends AbstractController
 
     }
 
-//
-//
-//    /**
-//     * @return Response
-//     * @Route(path="/ajout")
-//     */
-//    public function ajout()
-//    {
-//
-//        //if ( isset( $_GET['submit'] ) ) {
-//
-//            $adresse = new Adresse();
-//            $adresse->numero = $_GET['user_numero'];
-//            $adresse->rue = $_GET['user_voie'];
-//            $adresse->ville = $_GET['user_ville'];
-//            $adresse->pays = $_GET['user_pays'];
-//
-//            $entityManager = $this->getDoctrine()->getManager();
-//            $entityManager->persist($adresse);
-//            $entityManager->flush();
-//
-//            $etudiant = new Etudiant();
-//            $etudiant->prenom = $_GET['user_prenom'];
-//            $etudiant -> setNom($_GET['user_name']) ;
-//            $etudiant->age = $_GET['user_naissance'];
-//            $entityManager = $this->getDoctrine()->getManager();
-//            $etudiant->adresse = $adresse;
-//            $entityManager->persist($etudiant);
-//            $entityManager->flush();
-//
-//            $adresses = $entityManager->getRepository(Adresse::class)->findAll();
-//            $etudiants = $entityManager->getRepository(Etudiant::class)->findAll();
-//
-//        //}
-//
-//        return $this->render('base.html.twig', ['adr' => $adresses, 'etu' => $etudiants]);
-//
-//
-//    }
-//
-//
-//
-//    /**
-//     * @return Response
-//     * @Route(path="/suppression")
-//     */
-//    public function suppression()
-//    {
-//
-//        $entityManager = $this->getDoctrine()->getManager();
-//        $etudiant = $entityManager -> getRepository(Etudiant::class)-> find(13);
-//        $entityManager -> remove($etudiant);
-//        $entityManager -> flush();
-//
-//        $etudiant = $entityManager -> getRepository(Etudiant::class)-> findAll();
-//        return $this->render('base.html.twig',['etu'=>$etudiant]);
-//
-//    }
-//
-//    /**
-//     * @return Response
-//     * @Route(path="/update")
-//     */
-//    public function update()
-//    {
-//
-//        $entityManager = $this->getDoctrine()->getManager();
-//        //$etudiant = new Etudiant();
-//        $etudiant = $entityManager -> getRepository(Etudiant::class)-> find(12);
-//        $etudiant->age=62;
-//        $entityManager -> persist($etudiant);
-//        $entityManager -> flush();
-//
-//        $etudiant = $entityManager -> getRepository(Etudiant::class)-> findAll();
-//        return $this->render('base.html.twig',['etu'=>$etudiant]);
-//
-//    }
+
 
 }
 

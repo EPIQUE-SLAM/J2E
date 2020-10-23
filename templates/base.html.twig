@@ -1,30 +1,32 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.min.css">
+{% extends 'main.html.twig' %}
+{% block body %}
     <title>test</title>
 </head>
 <body>
-
+<br>
+<br>
 <center><H1>Liste de l'ensemble des passagers</H1></center>
 <center>
-    <table border="black">
-        <tr>
-            <th>Id</th>
-            <th>Nom</th>
-            <th>Prenom</th>
-            <th>Email</th>
-            <th>Telephone</th>
+    <table class="table table-hover">
+        <thead>
+
+        <tr class="table-info">
+            <th scope="col"> Id</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Prenom</th>
+            <th scope="col">Email</th>
+            <th scope="col">Telephone</th>
         </tr>
+        </thead>
         {% for i in data %}
-            <tr>
-                <td>{{ i.id }}</td>
-                <td>{{ i.nom }}</td>
-                <td>{{ i.prenom }}</td>
-                <td>{{ i.email }} </td>
-                <td>{{ i.telephone }}</td>
+          <tr class="table-light">
+                <td><p class="text-primary"><b>{{ i.id }}</b></p></td>
+                <td><p class="text-primary"><b>{{ i.nom }}</b></p></td>
+                <td><p class="text-primary"><b>{{ i.prenom }}</b></p></td>
+                <td><p class="text-primary"><b>{{ i.email }}</b></p> </td>
+                <td><p class="text-primary"><b>{{ i.telephone }}</b></p></td>
             </tr>
+            <p>
         {% endfor %}
 
 
@@ -39,38 +41,41 @@
     <br>
     Voir le dossier d'un passager
     <br>
-
+    <div class="form-group">
     <form action="/affichageInfoVoyage" method="get">
         <label>
-            <SELECT NAME="listeP">
+            <SELECT class="custom-select" NAME="listeP">
                 {% for i in data %}
                 <OPTION VALUE={{ i.id }} >  {{ i.id }}  : {{ i.nom}} {{ i.prenom }}
                     {% endfor %}
             </SELECT>
         </label>
 
-            <button type="submit">Voir les informations</button>
+        <br>
+           <center> <button type="submit" class="btn btn-danger btn-sm">Voir les informations</button></center>
 
     </form>
-
+    </div>
 
     <br>
     Voir les passagers ayant voyagé avec un passager donné
     <br>
 
+    <div class="form-group">
     <form action="/affichagePassagersPourUnPassager" method="get">
         <label>
-            <SELECT NAME="listeP">
+            <SELECT class="custom-select" NAME="listeP">
                 {% for i in data %}
                 <OPTION VALUE={{ i.id }} >  {{ i.id }}  : {{ i.nom}} {{ i.prenom }}
                     {% endfor %}
             </SELECT>
         </label>
 
-        <button type="submit">Voir les passagers</button>
-
+        <br>
+        <center> <button type="submit" class="btn btn-danger btn-sm ">Voir les passagers</button> </center>
     </form>
+    </div>
 </center>
 
 </body>
-</html>
+{% endblock %}
